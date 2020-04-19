@@ -3,6 +3,6 @@ var languages = {
 		'lang-alias': 'English'
 	},
 	'pl': {
-		'lang-alias': 'Hello Tootallforu!'
+		'lang-alias': 'Polish'
 	}
 };
