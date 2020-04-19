@@ -1,6 +1,5 @@
 # animagames.github.io
- AnimaGames's Official Page
- 
-=================================== 
+AnimaGames's Official Page
+
 # Thanks to...
- ... Tootallforu ( @Nugetzrul3 )
+... Tootallforu ( @Nugetzrul3 )
