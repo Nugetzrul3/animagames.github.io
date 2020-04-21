@@ -15,64 +15,91 @@
 		
 		<script src="langs.js"></script>
 		<script src="cookies.js"></script>
-		
-		<script> // MAGIC
-			function setCookie(name, value, days) {
-				var expires;
 
-				if (days) {
-					var date = new Date();
-					date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-					expires = '; expires=' + date.toGMTString();
-				} else {
-					expires = '';
+		<style>
+				body, html {
+					height: 100%;
+					text-align: center;
 				}
-				document.cookie = encodeURIComponent(name) + '=' + encodeURIComponent(value) + expires + '; path=/';
-			}
-		
-			function readCookie(name) {
-				var nameEQ = encodeURIComponent(name) + '=';
-				var ca = document.cookie.split(';');
-				for (var i = 0; i < ca.length; i++) {
-					var c = ca[i];
-					while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-					if (c.indexOf(nameEQ) === 0) return decodeURIComponent(c.substring(nameEQ.length, c.length));
+
+				.loader-wrapper {
+					width: 100%;
+					height: 100%;
+					position: absolute;
+					top: 0;
+					left: 0;
+					background-color: #242f3f;
+					display: flex;
+					justify-content: center;
+					align-items: center;
 				}
-				return null;
-			}
 
-			function deleteCookie(name) {
-				document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-			}
-		
-			function initLang() {
-				var language = readCookie('language');
-				var set_lang = 'en';
-				
-				if (language == null || languages[language] == undefined) {
-					var user_lang = navigator.language.substr(0, 2)
-					if (user_lang in languages) {
-						set_lang = user_lang;
-					}
+				.loader {
+				display: inline-block;
+				width: 30px;
+				height: 30px;
+				position: relative;
+				border: 4px solid #Fff;
+				animation: loader 2s infinite ease;
+				}
 
-					setCookie('language', set_lang, 60);
-					language = readCookie('language');
+				.loader-inner {
+				vertical-align: top;
+				display: inline-block;
+				width: 100%;
+				background-color: #fff;
+				animation: loader-inner 2s infinite ease-in;
+				}
+
+				@keyframes loader {
+				0% {
+					transform: rotate(0deg);
 				}
 				
-				$('#wallet-language-select select').empty()
-				for (key in languages) {
-					$('#language-select select').append($('<option>', {
-						'value': key,
-						'text': languages[key]['lang-alias']
-					}));
+				25% {
+					transform: rotate(180deg);
+				}
+				
+				50% {
+					transform: rotate(180deg);
+				}
+				
+				75% {
+					transform: rotate(360deg);
+				}
+				
+				100% {
+					transform: rotate(360deg);
+				}
+				}
+
+				@keyframes loader-inner {
+				0% {
+					height: 0%;
+				}
+				
+				25% {
+					height: 0%;
+				}
+				
+				50% {
+					height: 100%;
+				}
+				
+				75% {
+					height: 100%;
+				}
+				
+				100% {
+					height: 0%;
 				}
 			}
-			
-			$(document).ready(function() {
-				initLang();
-			});
-		</script>
+		</style>
 	</head>
+
+	<div class="loader-wrapper">
+		<span class="loader"><span class="loader-inner"></span></span>
+	</div>
 
 	<body>
 		<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" id="navbar0">
@@ -84,13 +111,13 @@
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item active">
 					<a class="nav-link" href="#">Home</a>
-					</li>
-					<li class="nav-item dropdown">
+          </li>
+          <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Test Dropdown
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Something here</a>
+              <a class="dropdown-item" href="about.html">Cube:Fun</a>
               <a class="dropdown-item" href="#">Something here</a>
               <a class="dropdown-item" href="#">Something here</a>
             </div>
@@ -103,14 +130,95 @@
 							<select class="custom-select"></select>
 						</div>
 					</div>
-				</form>
+        </form>
 			</div>
 		</nav>
 
 		<div class="container">
 			<div class="jumbotron">
-			
+			<a class="btn btn-success btn-primary" href="#" id="buybutton">BUY</a>
+			<a class="btn btn-danger btn-primary" href="#" id="demobutton">Try DEMO</a>
 			</div>
 		</div>
 	</body>
+
+
+
+	<script> // MAGIC
+		function setCookie(name, value, days) {
+			var expires;
+
+			if (days) {
+				var date = new Date();
+				date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+				expires = '; expires=' + date.toGMTString();
+			} else {
+				expires = '';
+			}
+			document.cookie = encodeURIComponent(name) + '=' + encodeURIComponent(value) + expires + '; path=/';
+		}
+	
+		function readCookie(name) {
+			var nameEQ = encodeURIComponent(name) + '=';
+			var ca = document.cookie.split(';');
+			for (var i = 0; i < ca.length; i++) {
+				var c = ca[i];
+				while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+				if (c.indexOf(nameEQ) === 0) return decodeURIComponent(c.substring(nameEQ.length, c.length));
+			}
+			return null;
+		}
+
+		function deleteCookie(name) {
+			document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+		}
+	
+		function initLang() {
+			var language = readCookie('language');
+			var set_lang = 'en';
+			
+			if (language == null || languages[language] == undefined) {
+				var user_lang = navigator.language.substr(0, 2)
+				if (user_lang in languages) {
+					set_lang = user_lang;
+				}
+
+				setCookie('language', set_lang, 60);
+				language = readCookie('language');
+			}
+			
+			$('#wallet-language-select select').empty()
+			for (key in languages) {
+				$('#language-select select').append($('<option>', {
+					'value': key,
+					'text': languages[key]['lang-alias']
+				}));
+			}
+		}
+		
+		$(document).ready(function() {
+			initLang();
+		});
+
+		$(window).on("load", function(){
+			$(".loader-wrapper").fadeOut("slow")
+		});
+
+		$("#buybutton").hover(function() {
+			$("#buybutton").text("$2")
+		})
+
+		$("#buybutton").mouseout(function() {
+			$("#buybutton").text("BUY")
+		});
+
+		$("#demobutton").hover(function() {
+			$("#demobutton").text("Download")
+		})
+
+		$("#demobutton").mouseout(function() {
+			$("#demobutton").text("Try DEMO")
+		});
+
+	</script>
 </html>
